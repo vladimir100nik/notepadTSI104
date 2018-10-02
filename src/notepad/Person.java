@@ -48,4 +48,12 @@ public class Person extends Record {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean hasSubstring(String str) {
+        return name.contains(str)
+                || surname.contains(str)
+                || phone.contains(str)
+                || email.contains(str);
+    }
 }

@@ -9,6 +9,8 @@ public abstract class Record {
         id = count;
     }
 
+    public abstract boolean hasSubstring(String str);
+
     public int getId() {
         return id;
     }

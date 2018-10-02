@@ -13,14 +13,22 @@ public class Main {
             System.out.println("Enter command ('help' for help):");
             String cmd = scanner.next();
             switch (cmd) {
-                case "create":
-                    create();
+                case "createperson":
+                case "cp":
+                    createPerson();
+                    break;
+                case "createnote":
+                case "cn":
+                    createNote();
                     break;
                 case "list":
                     printList();
                     break;
                 case "remove":
                     removeById();
+                    break;
+                case "find":
+                    find();
                     break;
                 case "help":
                     showHelp();
@@ -33,8 +41,27 @@ public class Main {
         }
     }
 
+    private static void find() {
+        System.out.println("Find what?");
+        String str = askString();
+        for (Record r : recordList) {
+            if (r.hasSubstring(str)) {
+                System.out.println(r);
+            }
+        }
+    }
+
+    private static void createNote() {
+        System.out.println("Enter text:");
+        String txt = askString();
+        Note note = new Note();
+        note.setText(txt);
+        recordList.add(note);
+        System.out.println(note);
+    }
+
     private static void showHelp() {
-        System.out.println("create - bla bla bla bla");
+        System.out.println("createPerson - bla bla bla bla");
         System.out.println("remove - bla bla bla bla");
         System.out.println("bla bla bla bla");
         System.out.println("bla bla bla bla");
@@ -69,7 +96,7 @@ public class Main {
         }
     }
 
-    private static void create() {
+    private static void createPerson() {
         System.out.println("Enter name:");
         String name = askString();
 
