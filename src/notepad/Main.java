@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
-    static List<Person> personList = new ArrayList<>();
+    static List<Record> recordList = new ArrayList<>();
 
     public static void main(String[] args) {
         while (true) {
@@ -43,10 +43,10 @@ public class Main {
     private static void removeById() {
         System.out.println("Enter ID to remove:");
         int id = scanner.nextInt();
-        for (int i = 0; i < personList.size(); i++) {
-            Person p = personList.get(i);
+        for (int i = 0; i < recordList.size(); i++) {
+            Record p = recordList.get(i);
             if (id == p.getId()) {
-                personList.remove(i);
+                recordList.remove(i);
                 break;
             }
         }
@@ -55,16 +55,16 @@ public class Main {
 //    private static void removeById() {
 //        System.out.println("Enter ID to remove:");
 //        int id = scanner.nextInt();
-//        for (Person p : personList) {
+//        for (Person p : recordList) {
 //            if (id == p.getId()) {
-//                personList.remove(p); // not very optimal
+//                recordList.remove(p); // not very optimal
 //                break;
 //            }
 //        }
 //    }
 
     private static void printList() {
-        for (Person p : personList) {
+        for (Record p : recordList) {
             System.out.println(p);
         }
     }
@@ -88,7 +88,7 @@ public class Main {
         p.setPhone(phone);
         p.setEmail(email);
 
-        personList.add(p);
+        recordList.add(p);
 
         System.out.println(p);
     }
