@@ -1,12 +1,13 @@
 package notepad;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
-    static List<Record> recordList = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+    private static List<Record> recordList = new ArrayList<>();
 
     public static void main(String[] args) {
         while (true) {
@@ -69,7 +70,7 @@ public class Main {
 
     private static void removeById() {
         System.out.println("Enter ID to remove:");
-        int id = scanner.nextInt();
+        int id = askInt();
         for (int i = 0; i < recordList.size(); i++) {
             Record p = recordList.get(i);
             if (id == p.getId()) {
@@ -79,7 +80,19 @@ public class Main {
         }
     }
 
-//    private static void removeById() {
+    private static int askInt() {
+        while (true) {
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                scanner.next(); // skip wrong input
+                System.out.println("It isn't a number");
+            }
+        }
+    }
+
+
+    //    private static void removeById() {
 //        System.out.println("Enter ID to remove:");
 //        int id = scanner.nextInt();
 //        for (Person p : recordList) {
@@ -89,7 +102,6 @@ public class Main {
 //            }
 //        }
 //    }
-
     private static void printList() {
         for (Record p : recordList) {
             System.out.println(p);
@@ -104,7 +116,7 @@ public class Main {
         String surname = askString();
 
         System.out.println("Enter phone:");
-        String phone = askString();
+        String phone = askPhone();
 
         System.out.println("Enter email:");
         String email = askString();
@@ -129,14 +141,47 @@ public class Main {
                 result.add(word);
                 if (word.endsWith("\"")) {
                     String str = String.join(" ", result);
-                    return str.substring(1, str.length()-1);
+                    return str.substring(1, str.length() - 1);
                 }
                 word = scanner.next();
-            } while(true);
+            } while (true);
 
         } else {
             return word;
         }
 
+    }
+
+    //  Simple phone validation
+    private static String askPhone_SIMPLE() {
+        while (true) {
+            String phone = askString();
+            if (phone.length() >= 5) {
+                return phone; // valid
+            } else {
+                System.out.println("Phone number is too short (min 5 digits)");
+            }
+        }
+    }
+
+    // More advanced phone validation Ļ(but still should be treated as an example)
+    private static String askPhone() {
+        while (true) {
+            String phone = askString();
+            // checking if there any characters expect digits, spaces, pluses and dashes
+            if (phone.chars().anyMatch(c -> !Character.isDigit(c) && c != ' ' && c != '+' && c != '-')) {
+                System.out.println("Only digits, spaces, plus and dash are allowed!");
+                continue;
+            }
+
+            // checking how many digits in the entered number (excluding spaces and other non-digits)
+            if (phone.chars().filter(Character::isDigit).count() < 5) {
+                System.out.println("At least 5 digits in phone number");
+                continue;
+            }
+
+            // validation passed
+            return phone;
+        }
     }
 }
