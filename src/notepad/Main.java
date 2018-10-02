@@ -103,6 +103,7 @@ public class Main {
                 if (word.endsWith("\"")) {
                     return String.join(" ", result);
                 }
+                word = scanner.next();
             } while(true);
 
         } else {
