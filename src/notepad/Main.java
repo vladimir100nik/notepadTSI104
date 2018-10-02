@@ -101,7 +101,8 @@ public class Main {
             do {
                 result.add(word);
                 if (word.endsWith("\"")) {
-                    return String.join(" ", result);
+                    String str = String.join(" ", result);
+                    return str.substring(1, str.length()-1);
                 }
                 word = scanner.next();
             } while(true);
