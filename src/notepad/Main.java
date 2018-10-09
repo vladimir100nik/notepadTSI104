@@ -22,6 +22,10 @@ public class Main {
                 case "cn":
                     createNote();
                     break;
+                case "createreminder":
+                case "cr":
+                    createReminder();
+                    break;
                 case "list":
                     printList();
                     break;
@@ -40,6 +44,23 @@ public class Main {
                     System.out.println("It isn't a command");
             }
         }
+    }
+
+    private static void createReminder() {
+        System.out.println("Enter reminder text");
+        String text = askString();
+        System.out.println("Enter reminder date");
+        String date = askString();
+        System.out.println("Enter reminder time");
+        String time = askString();
+
+        var reminder = new Reminder();
+        reminder.setText(text);
+        reminder.setDate(date);
+        reminder.setTime(time);
+
+        System.out.println(reminder);
+        recordList.add(reminder);
     }
 
     private static void find() {
