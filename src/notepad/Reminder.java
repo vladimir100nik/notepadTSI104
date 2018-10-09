@@ -4,6 +4,13 @@ public class Reminder extends Note {
     private String date;
     private String time;
 
+    @Override
+    public boolean hasSubstring(String str) {
+        return super.hasSubstring(str)
+                || date.contains(str)
+                || time.contains(str);
+    }
+
     public String getDate() {
         return date;
     }

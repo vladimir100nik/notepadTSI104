@@ -74,10 +74,8 @@ public class Main {
     }
 
     private static void createNote() {
-        System.out.println("Enter text:");
-        String txt = askString();
         Note note = new Note();
-        note.setText(txt);
+        note.askQuestions();
         recordList.add(note);
         System.out.println(note);
     }
@@ -113,16 +111,6 @@ public class Main {
     }
 
 
-    //    private static void removeById() {
-//        System.out.println("Enter ID to remove:");
-//        int id = scanner.nextInt();
-//        for (Person p : recordList) {
-//            if (id == p.getId()) {
-//                recordList.remove(p); // not very optimal
-//                break;
-//            }
-//        }
-//    }
     private static void printList() {
         for (Record p : recordList) {
             System.out.println(p);
@@ -153,7 +141,7 @@ public class Main {
         System.out.println(p);
     }
 
-    private static String askString() {
+    public static String askString() {
         var result = new ArrayList<String>();
         var word = scanner.next();
         if (word.startsWith("\"")) {
@@ -173,20 +161,8 @@ public class Main {
 
     }
 
-    //  Simple phone validation
-    private static String askPhone_SIMPLE() {
-        while (true) {
-            String phone = askString();
-            if (phone.length() >= 5) {
-                return phone; // valid
-            } else {
-                System.out.println("Phone number is too short (min 5 digits)");
-            }
-        }
-    }
-
     // More advanced phone validation Ļ(but still should be treated as an example)
-    private static String askPhone() {
+    public static String askPhone() {
         while (true) {
             String phone = askString();
             // checking if there any characters expect digits, spaces, pluses and dashes

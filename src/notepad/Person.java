@@ -5,6 +5,7 @@ public class Person extends Record {
     private String surname;
     private String phone;
     private String email;
+    private String hairColor;
 
     public String getName() {
         return name;
@@ -46,6 +47,7 @@ public class Person extends Record {
                 ", surname='" + surname + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", hairColor='" + hairColor + '\'' +
                 '}';
     }
 
@@ -54,6 +56,7 @@ public class Person extends Record {
         return name.contains(str)
                 || surname.contains(str)
                 || phone.contains(str)
-                || email.contains(str);
+                || email.contains(str)
+                || hairColor.contains(str);
     }
 }
