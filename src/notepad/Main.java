@@ -47,20 +47,8 @@ public class Main {
     }
 
     private static void createReminder() {
-        System.out.println("Enter reminder text");
-        String text = askString();
-        System.out.println("Enter reminder date");
-        String date = askString();
-        System.out.println("Enter reminder time");
-        String time = askString();
-
         var reminder = new Reminder();
-        reminder.setText(text);
-        reminder.setDate(date);
-        reminder.setTime(time);
-
-        System.out.println(reminder);
-        recordList.add(reminder);
+        addRecord(reminder);
     }
 
     private static void find() {
@@ -75,9 +63,7 @@ public class Main {
 
     private static void createNote() {
         Note note = new Note();
-        note.askQuestions();
-        recordList.add(note);
-        System.out.println(note);
+        addRecord(note);
     }
 
     private static void showHelp() {
@@ -118,26 +104,14 @@ public class Main {
     }
 
     private static void createPerson() {
-        System.out.println("Enter name:");
-        String name = askString();
-
-        System.out.println("Enter surname:");
-        String surname = askString();
-
-        System.out.println("Enter phone:");
-        String phone = askPhone();
-
-        System.out.println("Enter email:");
-        String email = askString();
-
         Person p = new Person();
-        p.setName(name);
-        p.setSurname(surname);
-        p.setPhone(phone);
-        p.setEmail(email);
+        addRecord(p);
+    }
 
+    private static void addRecord(Record p) {
+        p.askQuestions();
         recordList.add(p);
-
+        System.out.println("You have created this record:");
         System.out.println(p);
     }
 

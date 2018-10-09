@@ -5,6 +5,15 @@ public class Reminder extends Note {
     private String time;
 
     @Override
+    public void askQuestions() {
+        super.askQuestions();
+        System.out.println("Enter reminder date");
+        date = Main.askString();
+        System.out.println("Enter reminder time");
+        time = Main.askString();
+    }
+
+    @Override
     public boolean hasSubstring(String str) {
         return super.hasSubstring(str)
                 || date.contains(str)
