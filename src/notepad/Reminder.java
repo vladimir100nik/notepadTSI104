@@ -1,14 +1,16 @@
 package notepad;
 
+import java.time.LocalDate;
+
 public class Reminder extends Note {
-    private String date;
+    private LocalDate date;
     private String time;
 
     @Override
     public void askQuestions() {
         super.askQuestions();
         System.out.println("Enter reminder date");
-        date = Main.askString();
+        date = Main.askDate();
         System.out.println("Enter reminder time");
         time = Main.askString();
     }
@@ -16,15 +18,15 @@ public class Reminder extends Note {
     @Override
     public boolean hasSubstring(String str) {
         return super.hasSubstring(str)
-                || date.contains(str)
+                || date.format(Main.DATE_FORMATTER).contains(str)
                 || time.contains(str);
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

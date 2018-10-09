@@ -1,11 +1,17 @@
 package notepad;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    public final static String DATE_FORMAT = "dd.MM.yyyy";
+    public final static DateTimeFormatter DATE_FORMATTER
+            = DateTimeFormatter.ofPattern(DATE_FORMAT);
+
     private static Scanner scanner = new Scanner(System.in);
     private static List<Record> recordList = new ArrayList<>();
 
@@ -154,5 +160,11 @@ public class Main {
             // validation passed
             return phone;
         }
+    }
+
+    public static LocalDate askDate() {
+        String d = askString();
+        LocalDate date = LocalDate.parse(d, DATE_FORMATTER);
+        return date;
     }
 }
