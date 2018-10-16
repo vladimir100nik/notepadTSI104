@@ -1,10 +1,11 @@
 package notepad;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Reminder extends Note {
     private LocalDate date;
-    private String time;
+    private LocalTime time;
 
     @Override
     public void askQuestions() {
@@ -12,14 +13,14 @@ public class Reminder extends Note {
         System.out.println("Enter reminder date");
         date = Main.askDate();
         System.out.println("Enter reminder time");
-        time = Main.askString();
+        time = Main.askTime();
     }
 
     @Override
     public boolean hasSubstring(String str) {
         return super.hasSubstring(str)
                 || date.format(Main.DATE_FORMATTER).contains(str)
-                || time.contains(str);
+                || time.format(Main.TIME_FORMATTER).contains(str);
     }
 
     public LocalDate getDate() {
@@ -30,11 +31,11 @@ public class Reminder extends Note {
         this.date = date;
     }
 
-    public String getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 
@@ -43,8 +44,8 @@ public class Reminder extends Note {
         return "Reminder{" +
                 "id=" + getId() + ", " +
                 "text='" + getText() + '\'' +
-                ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
+                ", date='" + date.format(Main.DATE_FORMATTER) + '\'' +
+                ", time='" + time.format(Main.TIME_FORMATTER) + '\'' +
                 '}';
     }
 }
