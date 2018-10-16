@@ -52,12 +52,27 @@ public class Main {
                 case "help":
                     showHelp();
                     break;
+                case "expired":
+                    showExpired();
+                    break;
                 case "exit":
                     return;
                 default:
                     System.out.println("It isn't a command");
             }
         }
+    }
+
+    private static void showExpired() {
+        for (Record r : recordList.values()) {
+            if (r instanceof Expirable) {
+                Expirable e = (Expirable) r;
+                if (e.isExpired()) {
+                    System.out.println(r);
+                }
+            }
+        }
+
     }
 
     private static void createAlarm() {
@@ -93,10 +108,12 @@ public class Main {
     }
 
     private static void showHelp() {
-        System.out.println("createPerson - bla bla bla bla");
-        System.out.println("remove - bla bla bla bla");
-        System.out.println("bla bla bla bla");
-        System.out.println("bla bla bla bla");
+        System.out.println("createPerson - cp");
+        System.out.println("remove - remove");
+        System.out.println("list");
+        System.out.println("exit");
+        System.out.println("show");
+        System.out.println("createalarm - ca");
     }
 
     private static void removeById() {
