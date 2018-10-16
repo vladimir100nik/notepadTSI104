@@ -42,6 +42,9 @@ public class Main {
                 case "find":
                     find();
                     break;
+                case "show":
+                    showById();
+                    break;
                 case "help":
                     showHelp();
                     break;
@@ -51,6 +54,13 @@ public class Main {
                     System.out.println("It isn't a command");
             }
         }
+    }
+
+    private static void showById() {
+        System.out.println("Enter an ID");
+        int id = askInt();
+        Record record = recordList.get(id);
+        System.out.println(record);
     }
 
     private static void createReminder() {
