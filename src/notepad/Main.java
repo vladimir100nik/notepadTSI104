@@ -3,10 +3,7 @@ package notepad;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public final static String DATE_FORMAT = "dd.MM.yyyy";
@@ -17,7 +14,7 @@ public class Main {
             = DateTimeFormatter.ofPattern(TIME_FORMAT);
 
     private static Scanner scanner = new Scanner(System.in);
-    private static List<Record> recordList = new ArrayList<>();
+    private static Map<Integer, Record> recordList = new LinkedHashMap<>();
 
     public static void main(String[] args) {
         while (true) {
@@ -64,7 +61,7 @@ public class Main {
     private static void find() {
         System.out.println("Find what?");
         String str = askString();
-        for (Record r : recordList) {
+        for (Record r : recordList.values()) {
             if (r.hasSubstring(str)) {
                 System.out.println(r);
             }
@@ -86,13 +83,7 @@ public class Main {
     private static void removeById() {
         System.out.println("Enter ID to remove:");
         int id = askInt();
-        for (int i = 0; i < recordList.size(); i++) {
-            Record p = recordList.get(i);
-            if (id == p.getId()) {
-                recordList.remove(i);
-                break;
-            }
-        }
+        recordList.remove(id);
     }
 
     private static int askInt() {
@@ -108,7 +99,7 @@ public class Main {
 
 
     private static void printList() {
-        for (Record p : recordList) {
+        for (Record p : recordList.values()) {
             System.out.println(p);
         }
     }
@@ -120,7 +111,7 @@ public class Main {
 
     private static void addRecord(Record p) {
         p.askQuestions();
-        recordList.add(p);
+        recordList.put(p.getId(), p);
         System.out.println("You have created this record:");
         System.out.println(p);
     }
