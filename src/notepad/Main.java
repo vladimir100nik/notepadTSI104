@@ -33,6 +33,10 @@ public class Main {
                 case "cr":
                     createReminder();
                     break;
+                case "createalarm":
+                case "ca":
+                    createAlarm();
+                    break;
                 case "list":
                     printList();
                     break;
@@ -54,6 +58,11 @@ public class Main {
                     System.out.println("It isn't a command");
             }
         }
+    }
+
+    private static void createAlarm() {
+        var alarm = new Alarm();
+        addRecord(alarm);
     }
 
     private static void showById() {
